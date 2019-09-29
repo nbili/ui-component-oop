@@ -1,10 +1,15 @@
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    index: './src/code/index.ts',
+    slider: './src/code/Slider.ts'
+  },
   output: {
-    filename: 'main.js'
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist')
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
@@ -32,10 +37,12 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
+      chunks: ['index'],
       template: './src/template/index.html'
     }),
     new HtmlWebpackPlugin({
       filename: 'slider.html',
+      chunks: ['slider'],
       template: './src/template/slider.html'
     }),
   ]

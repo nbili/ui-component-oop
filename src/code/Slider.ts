@@ -14,14 +14,14 @@ class Slider {
     const controller = this.container.querySelector('.slide-list__control') as HTMLElement
     if (controller) {
       const buttons = controller.querySelectorAll('.slide-list__control-buttons--selected, .slide-list__control-buttons')
-      controller.addEventListener('mouseover', (evt) => {
+      controller.addEventListener('mouseover', evt => {
         const index = Array.from(buttons).indexOf(<HTMLElement>evt.target)
         if (index >= 0) {
           this.slideTo(index)
           this.stop()
         }
       })
-      controller.addEventListener('mouseout', (evt) => {
+      controller.addEventListener('mouseout', evt => {
         this.start()
       })
 
@@ -33,6 +33,25 @@ class Slider {
         }
         buttons[index].className = 'slide-list__control-buttons--selected'
       }) as EventListener)
+    }
+
+    const previous = this.container.querySelector('.slide-list__previous')
+    if (previous) {
+      previous.addEventListener('click', evt => {
+        this.stop()
+        this.slidePrevious()
+        this.start()
+        evt.preventDefault()
+      })
+    }
+    const next = this.container.querySelector('.slide-list__next')
+    if (next) {
+      next.addEventListener('click', evt => {
+        this.stop()
+        this.slideNext()
+        this.start()
+        evt.preventDefault()
+      })
     }
   }
 

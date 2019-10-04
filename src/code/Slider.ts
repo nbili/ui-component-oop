@@ -4,55 +4,20 @@ class Slider {
   container: HTMLElement
   items: NodeListOf<HTMLElement> | null = null
   cycle: number
+  slideHandlers: ((idx?: number) => void)[]
   private _timer: NodeJS.Timeout
 
   constructor(el: HTMLElement | string, cycle = 3000) {
     this.container = getElement(el)
     this.items = this.container.querySelectorAll('.slider-list__item, .slider-list__item--selected')
     this.cycle = cycle
+    this.slideHandlers = []
+  }
 
-    const controller = this.container.querySelector('.slide-list__control') as HTMLElement
-    if (controller) {
-      const buttons = controller.querySelectorAll('.slide-list__control-buttons--selected, .slide-list__control-buttons')
-      controller.addEventListener('mouseover', evt => {
-        const index = Array.from(buttons).indexOf(<HTMLElement>evt.target)
-        if (index >= 0) {
-          this.slideTo(index)
-          this.stop()
-        }
-      })
-      controller.addEventListener('mouseout', evt => {
-        this.start()
-      })
-
-      this.container.addEventListener('slide', ((evt: CustomEvent) => {
-        const index = evt.detail.index
-        const selected = controller.querySelector('.slide-list__control-buttons--selected')
-        if (selected) {
-          selected.className = 'slide-list__control-buttons'
-        }
-        buttons[index].className = 'slide-list__control-buttons--selected'
-      }) as EventListener)
-    }
-
-    const previous = this.container.querySelector('.slide-list__previous')
-    if (previous) {
-      previous.addEventListener('click', evt => {
-        this.stop()
-        this.slidePrevious()
-        this.start()
-        evt.preventDefault()
-      })
-    }
-    const next = this.container.querySelector('.slide-list__next')
-    if (next) {
-      next.addEventListener('click', evt => {
-        this.stop()
-        this.slideNext()
-        this.start()
-        evt.preventDefault()
-      })
-    }
+  registerPlugins(...plugins: ((slide: Slider) => void)[]) {
+    plugins.forEach(plugin => {
+      plugin(this)
+    })
   }
 
   getSelectedItem(): HTMLElement {
@@ -75,9 +40,13 @@ class Slider {
       item.className = 'slider-list__item--selected'
     }
 
-    const detail = { index }
-    const event = new CustomEvent('slide', { bubbles: true, detail })
-    this.container.dispatchEvent(event)
+    this.slideHandlers.forEach(handler => {
+      handler(index)
+    })
+  }
+
+  addSlideListener(handler: (idx: number) => void) {
+    this.slideHandlers.push(handler)
   }
 
   slideNext() {
@@ -102,12 +71,63 @@ class Slider {
   }
 }
 
+function pluginController(slider: Slider) {
+  const controller = slider.container.querySelector('.slide-list__control') as HTMLElement
+  if (controller) {
+    const buttons = controller.querySelectorAll('.slide-list__control-buttons--selected, .slide-list__control-buttons')
+    controller.addEventListener('mouseover', evt => {
+      const index = Array.from(buttons).indexOf(<HTMLElement>evt.target)
+      if (index >= 0) {
+        slider.slideTo(index)
+        slider.stop()
+      }
+    })
+    controller.addEventListener('mouseout', evt => {
+      slider.start()
+    })
+
+    slider.addSlideListener(index => {
+      const selected = controller.querySelector('.slide-list__control-buttons--selected')
+      if (selected) {
+        selected.className = 'slide-list__control-buttons'
+      }
+      buttons[index].className = 'slide-list__control-buttons--selected'
+    })
+  }
+}
+
+function pluginPrevious(slider: Slider) {
+  const previous = slider.container.querySelector('.slide-list__previous')
+  if (previous) {
+    previous.addEventListener('click', evt => {
+      slider.stop()
+      slider.slidePrevious()
+      slider.start()
+      evt.preventDefault()
+    })
+  }
+}
+
+function pluginNext(slider: Slider) {
+  const next = slider.container.querySelector('.slide-list__next')
+  if (next) {
+    next.addEventListener('click', evt => {
+      slider.stop()
+      slider.slideNext()
+      slider.start()
+      evt.preventDefault()
+    })
+  }
+}
+
 const slider = new Slider('#slider', 2000)
+
+slider.registerPlugins(pluginController, pluginPrevious, pluginNext)
+
 slider.start()
 
 const text = document.getElementById('text')
 
-slider.container.addEventListener('slide', ((evt: CustomEvent) => {
-  text.innerHTML = `第 ${evt.detail.index + 1} 张`
-}) as EventListener, false)
-
+slider.addSlideListener(index => {
+  text.innerHTML = `第 ${index + 1} 张`
+})

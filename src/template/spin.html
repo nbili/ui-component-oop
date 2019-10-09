@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spin</title>
+  <style>
+    .box-demo {
+      border: 1px solid #201e1e;
+      width: 50%;
+      text-align: center;
+      padding: 42px 24px 50px;
+      margin: 100px auto;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
+
+    .spin-spinning {
+      position: static;
+      display: inline-block;
+      font-size: 22px;
+      color: chocolate;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      margin-right: 16px;
+    }
+
+    @keyframes SpinMove {
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes antRotate {
+      to {
+        transform: rotate(405deg)
+      }
+    }
+
+    .spin-dot {
+      position: relative;
+      display: inline-block;
+      font-size: 20px;
+      width: 1em;
+      height: 1em;
+      transform: rotate(45deg);
+      animation: antRotate 1.2s infinite linear;
+    }
+
+    .spin-dot__item {
+      position: absolute;
+      display: block;
+      width: 9px;
+      height: 9px;
+      background-color: #1890ff;
+      border-radius: 100%;
+      transform: scale(.75);
+      transform-origin: 50% 50%;
+      animation: SpinMove 1s infinite linear alternate;
+      opacity: .3;
+    }
+
+    .spin-dot__item:nth-child(0) {
+      top: 0;
+      left: 0;
+    }
+
+    .spin-dot__item:nth-child(1) {
+      top: 0;
+      right: 0;
+      animation-delay: .4s;
+    }
+
+    .spin-dot__item:nth-child(2) {
+      right: 0;
+      bottom: 0;
+      animation-delay: .8s;
+    }
+
+    .spin-dot__item:nth-child(3) {
+      left: 0;
+      bottom: 0;
+      animation-delay: 1.2s;
+    }
+
+    /* lg */
+    .spin-lg .spin-dot {
+      font-size: 54px;
+    }
+
+    .spin-lg .spin-dot i {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="box-demo">
+    <div id="box1"></div>
+  </section>
+  <section class="box-demo">
+    <div id="box2"></div>
+  </section>
+</body>
+
+</html>

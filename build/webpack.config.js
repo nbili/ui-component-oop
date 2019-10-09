@@ -5,7 +5,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
   entry: {
     index: './src/code/index.ts',
-    slider: './src/code/Slider.ts'
+    slider: './src/code/Slider.ts',
+    spin: './src/code/Spin.ts',
   },
   output: {
     filename: '[name].js',
@@ -44,6 +45,11 @@ module.exports = {
       filename: 'slider.html',
       chunks: ['slider'],
       template: './src/template/slider.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'spin.html',
+      chunks: ['spin'],
+      template: './src/template/spin.html'
     }),
   ]
 }

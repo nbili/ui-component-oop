@@ -7,6 +7,7 @@ module.exports = {
     index: './src/code/index.ts',
     slider: './src/code/Slider.ts',
     spin: './src/code/Spin.ts',
+    progress: './src/code/Progress.ts',
   },
   output: {
     filename: '[name].js',
@@ -50,6 +51,11 @@ module.exports = {
       filename: 'spin.html',
       chunks: ['spin'],
       template: './src/template/spin.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'progress.html',
+      chunks: ['progress'],
+      template: './src/template/progress.html'
     }),
   ]
 }

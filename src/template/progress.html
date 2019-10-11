@@ -7,18 +7,48 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>progress</title>
   <style>
+    .box-demo {
+      border: 1px solid #201e1e;
+      width: 50%;
+      text-align: center;
+      padding: 42px 24px 50px;
+      margin: 100px auto;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
+
     .progress-circle {
       transform: rotate(-90deg);
     }
 
     .progress-circle__active {
-      transition: stroke-dasharray .5s linear 0s
+      transition: stroke-dasharray .3s ease 0s
+    }
+
+    .btn-group {
+      text-align: left;
+    }
+
+    .btn-group button {
+      background: white;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      border: 1px solid green;
+      outline: none;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <div class="progress"></div>
+  <section class="box-demo">
+    <div id="circle"></div>
+    <div class="btn-group">
+      <button class="btn-group__dec">-</button>
+      <button class="btn-group__add">+</button>
+    </div>
+  </section>
 </body>
 
 </html>

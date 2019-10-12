@@ -1,5 +1,3 @@
-import { getElement } from '../utils'
-
 interface Options {
   duration: number
   getContainer: () => HTMLElement

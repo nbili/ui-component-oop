@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>tree</title>
+  <style>
+    section.box-demo {
+      border: 1px solid #201e1e;
+      width: 50%;
+      padding: 42px 24px 50px;
+      margin: 100px auto;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
+
+    .tree {
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 14px;
+      line-height: 1.5;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tree>li:first-child {
+      padding-top: 7px;
+    }
+
+    .tree li {
+      margin: 0;
+      padding: 4px 0;
+      white-space: nowrap;
+      list-style: none;
+      outline: 0;
+    }
+
+    .tree li span.tree-switcher {
+      position: relative;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin: 0;
+      line-height: 24px;
+      text-align: center;
+      vertical-align: top;
+      border: 0 none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .tree-node__content-wrapper {
+      display: inline-block;
+      width: calc(100% - 24px);
+      height: 24px;
+      margin: 0;
+      padding: 0 5px;
+      color: rgba(0, 0, 0, 0.65);
+      line-height: 24px;
+      text-decoration: none;
+      vertical-align: top;
+      border-radius: 2px;
+      cursor: pointer;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+    }
+
+    .tree li ul {
+      margin: 0;
+      padding: 0 0 0 18px;
+    }
+
+    /* arrow */
+    .tree li span.tree-switcher.tree-switcher__open>i svg {
+      transition: transform .3s;
+    }
+
+    .tree li span.tree-switcher.tree-switcher__close>i svg {
+      transition: transform .3s;
+      transform: rotate(-90deg);
+    }
+  </style>
+</head>
+
+<body>
+  <section class="box-demo">
+    <ul class="tree">
+      <li class="tree-treenode__switcher--close">
+        <span class="tree-switcher tree-switcher__close">
+          <i>
+            <svg viewBox="0 0 1024 1024" focusable="false" data-icon="caret-down" width="1em" height="1em"
+              fill="currentColor" aria-hidden="true">
+              <path
+                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
+              </path>
+            </svg>
+          </i>
+        </span>
+        <span class="tree-node__content-wrapper tree-node__content-wrapper--open">
+          <span>节点0</span>
+        </span>
+      </li>
+      <li class="tree-treenode__switcher--open">
+        <span class="tree-switcher tree-switcher__open">
+          <i>
+            <svg viewBox="0 0 1024 1024" focusable="false" data-icon="caret-down" width="1em" height="1em"
+              fill="currentColor" aria-hidden="true">
+              <path
+                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
+              </path>
+            </svg>
+          </i>
+        </span>
+        <span class="tree-node__content-wrapper tree-node__content-wrapper--open">
+          <span>节点1</span>
+        </span>
+        <ul>
+          <li class="tree-treenode__switcher--open">
+            <span class="tree-switcher tree-switcher__open">
+              <i>
+                <svg viewBox="0 0 1024 1024" focusable="false" data-icon="caret-down" width="1em" height="1em"
+                  fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
+                  </path>
+                </svg>
+              </i>
+            </span>
+            <span class="tree-node__content-wrapper tree-node__content-wrapper--open">
+              <span>节点1-1</span>
+            </span>
+          </li>
+        </ul>
+      </li>
+      <li class="tree-treenode__switcher--open">
+        <span class="tree-switcher tree-switcher__open">
+          <i>
+            <svg viewBox="0 0 1024 1024" focusable="false" data-icon="caret-down" width="1em" height="1em"
+              fill="currentColor" aria-hidden="true">
+              <path
+                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
+              </path>
+            </svg>
+          </i>
+        </span>
+        <span class="tree-node__content-wrapper tree-node__content-wrapper--open">
+          <span>节点2</span>
+        </span>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

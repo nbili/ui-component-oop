@@ -9,6 +9,7 @@ module.exports = {
     spin: './src/code/Spin.ts',
     progress: './src/code/Progress.ts',
     message: './src/code/Message.ts',
+    tree: './src/code/Tree.ts',
   },
   output: {
     filename: '[name].js',
@@ -62,6 +63,11 @@ module.exports = {
       filename: 'message.html',
       chunks: ['message'],
       template: './src/template/message.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'tree.html',
+      chunks: ['tree'],
+      template: './src/template/tree.html'
     }),
   ]
 }

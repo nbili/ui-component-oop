@@ -73,7 +73,7 @@ const p = new Progress('#circle', { color: 'green', percent: 30 })
 const dec = document.querySelector('.btn-group__dec') as HTMLElement
 const add = document.querySelector('.btn-group__add') as HTMLElement
 
-let count = 0
+let count = 30
 
 dec.onclick = () => {
   count -= 10

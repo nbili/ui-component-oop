@@ -49,6 +49,7 @@
       border: 0 none;
       outline: none;
       cursor: pointer;
+      user-select: none;
     }
 
     .tree-node__content-wrapper {
@@ -81,75 +82,19 @@
       transition: transform .3s;
       transform: rotate(-90deg);
     }
+
+    .tree .tree-treenode__switcher--close>ul {
+      display: none;
+    }
+
+    .tree .tree-treenode__switcher--open>ul {
+      display: block;
+    }
   </style>
 </head>
 
 <body>
   <section class="box-demo">
-    <ul class="tree">
-      <li class="tree-treenode__switcher--close">
-        <span class="tree-switcher tree-switcher__close">
-          <i>
-            <svg viewBox="0 0 1024 1024" focusable="false" data-icon="caret-down" width="1em" height="1em"
-              fill="currentColor" aria-hidden="true">
-              <path
-                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
-              </path>
-            </svg>
-          </i>
-        </span>
-        <span class="tree-node__content-wrapper tree-node__content-wrapper--open">
-          <span>节点0</span>
-        </span>
-      </li>
-      <li class="tree-treenode__switcher--open">
-        <span class="tree-switcher tree-switcher__open">
-          <i>
-            <svg viewBox="0 0 1024 1024" focusable="false" data-icon="caret-down" width="1em" height="1em"
-              fill="currentColor" aria-hidden="true">
-              <path
-                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
-              </path>
-            </svg>
-          </i>
-        </span>
-        <span class="tree-node__content-wrapper tree-node__content-wrapper--open">
-          <span>节点1</span>
-        </span>
-        <ul>
-          <li class="tree-treenode__switcher--open">
-            <span class="tree-switcher tree-switcher__open">
-              <i>
-                <svg viewBox="0 0 1024 1024" focusable="false" data-icon="caret-down" width="1em" height="1em"
-                  fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
-                  </path>
-                </svg>
-              </i>
-            </span>
-            <span class="tree-node__content-wrapper tree-node__content-wrapper--open">
-              <span>节点1-1</span>
-            </span>
-          </li>
-        </ul>
-      </li>
-      <li class="tree-treenode__switcher--open">
-        <span class="tree-switcher tree-switcher__open">
-          <i>
-            <svg viewBox="0 0 1024 1024" focusable="false" data-icon="caret-down" width="1em" height="1em"
-              fill="currentColor" aria-hidden="true">
-              <path
-                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
-              </path>
-            </svg>
-          </i>
-        </span>
-        <span class="tree-node__content-wrapper tree-node__content-wrapper--open">
-          <span>节点2</span>
-        </span>
-      </li>
-    </ul>
   </section>
 </body>
 

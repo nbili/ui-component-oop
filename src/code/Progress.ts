@@ -8,6 +8,11 @@ type Options = {
 
 type Hanlder = (percent: number) => void
 
+type Plugins = {
+  render: (percent: number) => string,
+  action: (slider: Progress, controller: HTMLElement) => void
+}
+
 function fixPercent(val: number) {
   val = val > 100 ? 100 : val
   val = val < 0 ? 0 : val
@@ -32,6 +37,17 @@ class Progress {
     this.container.innerHTML = this.render()
     this.compelteHanlders = []
   }
+
+  registerPlugins(...plugins: Plugins[]) {
+    plugins.forEach(plugin => {
+      let pluginController = document.createElement('div')
+      pluginController.className = 'progress-text__plugin'
+      pluginController.innerHTML = plugin.render(this.percent)
+      this.container.appendChild(pluginController)
+      plugin.action(this, pluginController)
+    })
+  }
+
   addCompelteListener(handler: Hanlder) {
     this.compelteHanlders.push(handler)
   }
@@ -44,12 +60,12 @@ class Progress {
     progressActive.setAttribute('stroke-dasharray', `${this.getDasharray()} 999`)
     if (this.percent === 100) {
       progressActive.setAttribute('stroke', `greenyellow`)
-      this.compelteHanlders.forEach(handler => {
-        handler(this.percent)
-      })
     } else {
       progressActive.setAttribute('stroke', this.color)
     }
+    this.compelteHanlders.forEach(handler => {
+      handler(this.percent)
+    })
   }
   getDasharray() {
     return (2 * Math.PI * this.r) * 0.01 * this.percent
@@ -68,27 +84,48 @@ class Progress {
   }
 }
 
-const p = new Progress('#circle', { color: 'green', percent: 30 })
+const p = new Progress('#circle', { color: 'green', percent: 0 })
+
+const progressText: Plugins = {
+  render(progress) {
+    return `<div class="progress-text" data-progress="0">0%</div>`
+  },
+  action(progress, controller) {
+    const progressText = controller.querySelector('.progress-text') as HTMLElement
+    progress.addCompelteListener(percent => {
+      let from = parseFloat(progressText.dataset.progress)
+      progressText.dataset.progress = `${percent}`
+      let start = new Date().getTime()
+      setTimeout(function animateText() {
+        let now = (new Date().getTime()) - start
+        let gress = now / 700
+        let result = percent > from ? Math.floor((percent - from) * gress + from) : Math.floor(from - (from - percent) * gress)
+        progressText.innerHTML = gress < 1 ? result + '%' : percent + '%'
+        if (gress < 1) setTimeout(animateText, 10);
+      }, 10);
+    })
+  }
+}
+
+p.registerPlugins(progressText)
 
 const dec = document.querySelector('.btn-group__dec') as HTMLElement
 const add = document.querySelector('.btn-group__add') as HTMLElement
 
-let count = 30
+let count = 0
 
 dec.onclick = () => {
   count -= 10
   count = count <= 0 ? 0 : count
   p.setValue(count)
-  console.log(p.getValue())
 }
 
 add.onclick = () => {
   count += 10
   count = count >= 100 ? 100 : count
   p.setValue(count)
-  console.log(p.getValue())
 }
 
 p.addCompelteListener(percent => {
-  console.log('完成', percent)
+  console.log('进度：', percent)
 })

@@ -8,6 +8,7 @@
   <title>progress</title>
   <style>
     .box-demo {
+      position: relative;
       border: 1px solid #201e1e;
       width: 50%;
       text-align: center;
@@ -15,6 +16,10 @@
       margin: 100px auto;
       margin-bottom: 30px;
       cursor: pointer;
+    }
+
+    div#circle {
+      position: relative;
     }
 
     .progress-circle {
@@ -37,6 +42,13 @@
       border: 1px solid green;
       outline: none;
       cursor: pointer;
+    }
+
+    .progress-text__plugin {
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      font-size: 30px;
     }
   </style>
 </head>

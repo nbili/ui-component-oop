@@ -1,16 +1,24 @@
 import { getElement } from '../utils'
 
-type Options = {
+export type Options = {
   images: string[],
   cycle?: number
 }
 
-type Plugin = {
+export type Plugin = {
   render: (img?: string[]) => string,
   action: (slider: Slider, controller: HTMLElement) => void
 }
 
-class Slider {
+export interface SliderConfig {
+  getSelectedItem: () => HTMLElement;
+  getSelectedItemIndex: () => number;
+  slideTo: (index: number) => void;
+  slideNext: () => void;
+  slidePrevious: () => void;
+}
+
+class Slider implements SliderConfig {
   container: HTMLElement
   items: NodeListOf<HTMLElement> | null = null
   cycle: number

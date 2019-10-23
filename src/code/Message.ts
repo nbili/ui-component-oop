@@ -1,4 +1,4 @@
-interface Options {
+interface OptionsConfig {
   duration: number
   getContainer: () => HTMLElement
   maxCount: number
@@ -6,26 +6,26 @@ interface Options {
 }
 
 class Message {
-  option: Options
+  options: OptionsConfig
   duration: number
   getContainer: () => HTMLElement
   maxCount: number
   top: number
   container: HTMLElement
-  timer: NodeJS.Timer
-  constructor(text?: string, option?: Partial<Options>) {
+  timer: number
+  constructor(text?: string, options?: Partial<OptionsConfig>) {
     let defaultOptions = {
       duration: 3,
       getContainer() { return document.body },
       maxCount: Infinity,
       top: 24,
     }
-    this.option = Object.assign(defaultOptions as Options, option)
-    this.duration = this.option.duration
-    this.maxCount = this.option.maxCount
-    this.top = this.option.top
-    this.container = this.option.getContainer()
-    this.timer = null
+    this.options = Object.assign(defaultOptions as OptionsConfig, options)
+    this.duration = this.options.duration
+    this.maxCount = this.options.maxCount
+    this.top = this.options.top
+    this.container = this.options.getContainer()
+    this.timer = 0
     this.render()
     text ? this.addNotice(text) : void 0
   }
@@ -44,7 +44,7 @@ class Message {
     notice.setAttribute('class', 'message-notice')
     notice.innerHTML = noticeContent
     span.appendChild(notice)
-    this.timer = setTimeout(() => {
+    this.timer = window.setTimeout(() => {
       clearTimeout(this.timer)
       span.removeChild(notice)
     }, this.duration * 1000)
@@ -66,7 +66,7 @@ class Message {
 }
 
 document.addEventListener('click', () => {
-  new Message('弹窗信息😀！！！', { top: 200, maxCount: 3 })
+  new Message('弹窗信息😀！！！', { maxCount: 6 })
 })
 
 new Message('弹窗信息😀！！！', { duration: 3 })

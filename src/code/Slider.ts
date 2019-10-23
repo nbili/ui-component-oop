@@ -24,7 +24,7 @@ class Slider implements SliderConfig {
   cycle: number
   options: Options
   slideHandlers: ((idx?: number) => void)[]
-  private _timer: NodeJS.Timeout
+  private _timer: number
 
   constructor(el: HTMLElement | string, options: Options) {
     this.container = getElement(el)
@@ -102,7 +102,7 @@ class Slider implements SliderConfig {
 
   start() {
     this.stop()
-    this._timer = setInterval(() => this.slideNext(), this.cycle)
+    this._timer = window.setInterval(() => this.slideNext(), this.cycle)
   }
 
   stop() {

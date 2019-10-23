@@ -51,9 +51,11 @@ class Progress {
   addCompelteListener(handler: Hanlder) {
     this.compelteHanlders.push(handler)
   }
+
   getValue() {
     return this.percent
   }
+
   setValue(val: number) {
     this.percent = parseFloat(fixPercent(val).toFixed(2))
     let progressActive = this.container.querySelector('.progress-circle__active')
@@ -67,6 +69,7 @@ class Progress {
       handler(this.percent)
     })
   }
+
   getDasharray() {
     return (2 * Math.PI * this.r) * 0.01 * this.percent
   }
@@ -87,7 +90,7 @@ class Progress {
 const p = new Progress('#circle', { color: 'green', percent: 0 })
 
 const progressText: Plugins = {
-  render(progress) {
+  render() {
     return `<div class="progress-text" data-progress="0">0%</div>`
   },
   action(progress, controller) {

@@ -1,6 +1,6 @@
 import { getElement } from '../utils'
 
-type Options = {
+export type Options = {
   delay: number
   size: 'default' | 'large'
   spinning: boolean
@@ -56,6 +56,8 @@ class Spin {
     `
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const spin1 = new Spin('#box1', { size: 'default' })
 

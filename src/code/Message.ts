@@ -1,4 +1,4 @@
-interface OptionsConfig {
+export interface OptionsConfig {
   duration: number
   getContainer: () => HTMLElement
   maxCount: number
@@ -64,6 +64,8 @@ class Message {
     this.container.appendChild(message)
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 document.addEventListener('click', () => {
   new Message('弹窗信息😀！！！', { maxCount: 6 })

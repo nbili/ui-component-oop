@@ -184,6 +184,8 @@ const pluginNext: Plugin = {
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const slider = new Slider('#slider', {
   images: [
     'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/64070c0d2b1e6b69316c7b9fc9d3ec50.jpg?thumb=1&w=1226&h=460&f=webp&q=90',

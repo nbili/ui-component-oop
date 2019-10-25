@@ -1,14 +1,14 @@
 import { getElement } from '../utils'
 
-type Options = {
+export type Options = {
   step?: number
   percent?: number
   color?: string
 }
 
-type Hanlder = (percent: number) => void
+export type Hanlder = (percent: number) => void
 
-type Plugins = {
+export type Plugins = {
   render: (percent: number) => string,
   action: (slider: Progress, controller: HTMLElement) => void
 }
@@ -87,8 +87,6 @@ class Progress {
   }
 }
 
-const p = new Progress('#circle', { color: 'green', percent: 0 })
-
 const progressText: Plugins = {
   render() {
     return `<div class="progress-text" data-progress="0">0%</div>`
@@ -109,6 +107,10 @@ const progressText: Plugins = {
     })
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const p = new Progress('#circle', { color: 'green', percent: 0 })
 
 p.registerPlugins(progressText)
 

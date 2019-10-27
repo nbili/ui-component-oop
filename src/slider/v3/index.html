@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Slider</title>
+  <style>
+    h2 {
+      text-align: center;
+    }
+
+    #slider {
+      position: relative;
+      width: 890px;
+      height: 333px;
+      margin: 0 auto;
+    }
+
+    .slider-list ul {
+      list-style-type: none;
+      position: relative;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slider-list ul li>img {
+      vertical-align: top;
+      width: 100%;
+    }
+
+    .slider-list__item,
+    .slider-list__item--selected {
+      position: absolute;
+      text-align: center;
+      transition: opacity 1s;
+      opacity: 0;
+    }
+
+    .slider-list__item--selected {
+      transition: opacity 1s;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Slider V2</h2>
+  <!-- content -->
+  <div id="slider" class="slider-list">
+    <ul>
+      <li class="slider-list__item--selected">
+        <img
+          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/64070c0d2b1e6b69316c7b9fc9d3ec50.jpg?thumb=1&w=1226&h=460&f=webp&q=90">
+      </li>
+      <li class="slider-list__item">
+        <img
+          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a38b1d56409913d5dc869023ade36d94.jpg?thumb=1&w=1226&h=460&f=webp&q=90">
+      </li>
+      <li class="slider-list__item">
+        <img
+          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f2fee92be293f0cd9ca4e7d88a56033e.jpg?thumb=1&w=1226&h=460&f=webp&q=90">
+      </li>
+      <li class="slider-list__item">
+        <img
+          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/056576955e6b8a936bbea4e3fc728a4b.jpg?thumb=1&w=1226&h=460&f=webp&q=90">
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

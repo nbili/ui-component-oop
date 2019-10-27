@@ -10,6 +10,9 @@ module.exports = {
     progress: './src/code/Progress.ts',
     message: './src/code/Message.ts',
     tree: './src/code/Tree.ts',
+    // ===============Slider================
+    slider1: './src/slider/v1/index.ts',
+    slider2: './src/slider/v2/index.ts',
   },
   output: {
     filename: '[name].js',
@@ -68,6 +71,17 @@ module.exports = {
       filename: 'tree.html',
       chunks: ['tree'],
       template: './src/template/tree.html'
+    }),
+    // ===============Slider================
+    new HtmlWebpackPlugin({
+      filename: 'slider1.html',
+      chunks: ['slider1'],
+      template: './src/slider/v1/index.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'slider2.html',
+      chunks: ['slider2'],
+      template: './src/slider/v2/index.html'
     }),
   ]
 }

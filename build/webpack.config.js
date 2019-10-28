@@ -13,6 +13,7 @@ module.exports = {
     // ===============Slider================
     slider1: './src/slider/v1/index.ts',
     slider2: './src/slider/v2/index.ts',
+    slider3: './src/slider/v3/index.ts',
   },
   output: {
     filename: '[name].js',
@@ -82,6 +83,11 @@ module.exports = {
       filename: 'slider2.html',
       chunks: ['slider2'],
       template: './src/slider/v2/index.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'slider3.html',
+      chunks: ['slider3'],
+      template: './src/slider/v3/index.html'
     }),
   ]
 }

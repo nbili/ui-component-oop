@@ -44,11 +44,86 @@
       transition: opacity 1s;
       opacity: 1;
     }
+
+    /* control */
+    .slide-list__next,
+    .slide-list__previous {
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      margin-top: -25px;
+      width: 30px;
+      height: 50px;
+      text-align: center;
+      font-size: 24px;
+      line-height: 50px;
+      overflow: hidden;
+      border: none;
+      color: white;
+      background: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .5s;
+    }
+
+    .slide-list__previous {
+      left: 0;
+    }
+
+    .slide-list__next {
+      right: 0;
+    }
+
+    #slider:hover .slide-list__previous {
+      opacity: 1;
+    }
+
+    #slider:hover .slide-list__next {
+      opacity: 1;
+    }
+
+    .slide-list__previous:after {
+      content: '<';
+    }
+
+    .slide-list__next:after {
+      content: '>';
+    }
+
+    /* slick */
+    .slide-list__control {
+      position: absolute;
+      display: inline-block;
+      width: 400px;
+      left: auto;
+      right: 30px;
+      bottom: 20px;
+      text-align: right;
+    }
+
+    .slide-list__control-buttons,
+    .slide-list__control-buttons--selected {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border: 2px solid #fff;
+      border-color: hsla(0, 0%, 100%, .3);
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, .4);
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .slide-list__control-buttons--selected {
+      background: hsla(0, 0%, 100%, .4);
+      border-color: rgba(0, 0, 0, .4);
+    }
   </style>
 </head>
 
 <body>
-  <h2>Slider V2</h2>
+  <h2>Slider 控制流设计</h2>
   <!-- content -->
   <div id="slider" class="slider-list">
     <ul>
@@ -69,6 +144,14 @@
           src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/056576955e6b8a936bbea4e3fc728a4b.jpg?thumb=1&w=1226&h=460&f=webp&q=90">
       </li>
     </ul>
+    <a class="slide-list__next"></a>
+    <a class="slide-list__previous"></a>
+    <div class="slide-list__control">
+      <span class="slide-list__control-buttons--selected"></span>
+      <span class="slide-list__control-buttons"></span>
+      <span class="slide-list__control-buttons"></span>
+      <span class="slide-list__control-buttons"></span>
+    </div>
   </div>
 </body>
 
